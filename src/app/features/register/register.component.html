@@ -1,0 +1,218 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-2">Create New Account</h2>
+    <p class="pb-6 text-gray-500">It is quick and easy.</p>
+    <p class="text-center text-red-500">{{ msError() }}</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-4">
+      <!-- Full Name -->
+      <div class="relative">
+        <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400"></i>
+        <input
+          [class]="{
+            'border-green-500': registerForm.get('name')?.valid,
+            'border-red-500':
+              registerForm.get('name')?.invalid && registerForm.get('name')?.touched,
+            ' border-slate-200': !registerForm.get('name')?.touched,
+          }"
+          formControlName="name"
+          type="text"
+          placeholder="Full Name"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <div>
+            <span class="font-medium">Ensure that these requirements are met:</span>
+            <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+              @if (registerForm.get('name')?.hasError('required')) {
+                <li>Name is Required</li>
+              }
+              @if (registerForm.get('name')?.hasError('minlength')) {
+                <li>At least 3 characters</li>
+              }
+              @if (registerForm.get('name')?.hasError('pattern')) {
+                <li>Each name must start with an Uppercase letter</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+
+      <!-- Username -->
+      <div class="relative">
+        <i class="fa-solid fa-id-badge absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="username"
+          type="text"
+          placeholder="Username"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (registerForm.get('username')?.hasError('minlength')) {
+              <li>At least 3 characters</li>
+            }
+            @if (registerForm.get('username')?.hasError('maxlength')) {
+              <li>Maximum 15 characters</li>
+            }
+            @if (registerForm.get('username')?.hasError('pattern')) {
+              <li>Only lowercase letters, numbers, and underscores allowed</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <!-- Email -->
+      <div class="relative">
+        <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="Email Address"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (registerForm.get('email')?.hasError('required')) {
+              <li>Email is Required</li>
+            }
+            @if (registerForm.get('email')?.hasError('email')) {
+              <li>Invalid email format</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <!-- Gender -->
+      <div class="relative">
+        <i class="fa-solid fa-venus-mars absolute left-3 top-3 text-gray-400"></i>
+        <select
+          formControlName="gender"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        >
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            <li>Gender selection is required.</li>
+          </ul>
+        </div>
+      }
+
+      <!-- Date of Birth -->
+      <div class="relative">
+        <i class="fa-solid fa-calendar absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="dateOfBirth"
+          type="date"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            <li>Date of birth is required.</li>
+          </ul>
+        </div>
+      }
+
+      <!-- Password -->
+      <div class="relative">
+        <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="password"
+          type="password"
+          placeholder="Password"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (registerForm.get('password')?.hasError('required')) {
+              <li>Password is required.</li>
+            }
+
+            <li>
+              Password must be at least 8 characters long and include at least one uppercase letter,
+              one lowercase letter, one number, and one special character.
+            </li>
+          </ul>
+        </div>
+      }
+
+      <!-- Confirm Password -->
+      <div class="relative">
+        <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="rePassword"
+          type="password"
+          placeholder="Confirm Password"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (
+        registerForm.get('rePassword')?.touched &&
+        registerForm.get('rePassword')?.hasError('required')
+      ) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (registerForm.get('rePassword')?.hasError('required')) {
+              <li>Confirm Password is required.</li>
+              <li>Passwords do not match.</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full rounded-xl py-3 text-base font-extrabold text-white transition disabled:opacity-60 bg-[#00298d] hover:bg-[#001f6b]"
+      >
+        Create New Account
+        @if (loading()) {
+          <i class="fa-solid fa-spinner fa-spin"></i>
+        }
+      </button>
+    </form>
+  </div>
+</div>

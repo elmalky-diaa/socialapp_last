@@ -1,0 +1,171 @@
+<header class="sticky top-0 z-40 border-b border-slate-200/90 bg-white/95 backdrop-blur">
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-1.5 sm:gap-3 sm:px-3"
+  >
+    <!-- Logo & Title -->
+    <div class="flex items-center gap-3">
+      <img alt="Route Posts" class="h-9 w-9 rounded-xl object-cover" src="Images/route.png" />
+      <p class="hidden text-xl font-extrabold text-slate-900 sm:block">Route Posts</p>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav
+      class="flex min-w-0 items-center gap-1 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50/90 px-1 py-1 sm:px-1.5"
+    >
+      <!-- Feed Link -->
+      <a
+        routerLink="feeds"
+        routerLinkActive="bg-white text-[#1f6fe5] shadow-sm"
+        class="relative flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 text-slate-600 hover:text-slate-900"
+      >
+        <span>
+          <svg
+            xmlns="http://w3.org"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-house"
+          >
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+            <path
+              d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2z"
+            ></path>
+          </svg>
+        </span>
+        <span class="hidden sm:inline">Feed</span>
+      </a>
+
+      <!-- Profile Link -->
+      <a
+        routerLink="profile"
+        routerLinkActive="bg-white text-[#1f6fe5] shadow-sm"
+        class="relative flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 text-slate-600 hover:text-slate-900"
+      >
+        <span>
+          <svg
+            xmlns="http://w3.org"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-user"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+        <span class="hidden sm:inline">Profile</span>
+      </a>
+
+      <!-- Notifications Link -->
+      <a
+        routerLink="notification"
+        routerLinkActive="bg-white text-[#1f6fe5] shadow-sm"
+        class="relative flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 text-slate-600 hover:text-slate-900"
+      >
+        <span>
+          <svg
+            xmlns="http://w3.org"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-message-circle"
+          >
+            <path
+              d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"
+            ></path>
+          </svg>
+        </span>
+        <span class="hidden sm:inline">Notifications</span>
+      </a>
+    </nav>
+
+    <!-- User Menu Container -->
+    <div class="relative">
+      <button
+        id="userMenuButton"
+        data-dropdown-toggle="userDropdownMenu"
+        data-dropdown-placement="bottom-end"
+        class="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-1.5 transition hover:bg-slate-100 focus:outline-none"
+      >
+        <img
+          alt="Diaa Elmalky"
+          class="h-8 w-8 rounded-full object-cover"
+          src="Images/default-profile.png"
+        />
+        <span class="hidden max-w-[140px] truncate text-sm font-semibold text-slate-800 md:block"
+          >Diaa Elmalky</span
+        >
+        <svg
+          xmlns="http://w3.org"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-menu text-slate-500"
+          aria-hidden="true"
+        >
+          <path d="M4 5h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 19h16"></path>
+        </svg>
+      </button>
+
+      <div
+        id="userDropdownMenu"
+        class="hidden my-2 w-48 origin-top-right rounded-xl border border-slate-100 bg-white p-1 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+      >
+        <!-- Profile Option -->
+        <a
+          routerLink="profile"
+          class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 transition"
+        >
+          <svg
+            xmlns="http://w3.org"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="text-slate-400"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          My Profile
+        </a>
+
+        <!-- Divider -->
+        <hr class="my-1 border-slate-100" />
+
+        <!-- Logout Option -->
+        <a
+          href="javascript:void(0)"
+          (click)="navbarLogut()"
+          class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition text-left cursor-pointer"
+        >
+          LogOut
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,85 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-2">Create New Account</h2>
+    <p class="pb-6 text-gray-500">It is quick and easy.</p>
+    <p class="text-center text-red-500">{{ msError() }}</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4">
+      <!-- Email -->
+      <div class="relative">
+        <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400"></i>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="Email Address"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+      </div>
+      <!-- Validation -->
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (loginForm.get('email')?.hasError('required')) {
+              <li>Email is Required</li>
+            }
+            @if (loginForm.get('email')?.hasError('email')) {
+              <li>Invalid email format</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <!-- Password -->
+      <div class="relative">
+        <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+        <input
+          #pass
+          formControlName="password"
+          type="password"
+          placeholder="Password"
+          class="w-full rounded-xl border bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:bg-white border-slate-200 focus:border-[#00298d]"
+        />
+        <div class="absolute top-1/2 right-4 -translate-y-1/2">
+          <i
+            (click)="togglePass(pass)"
+            [class]="pass.type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+            class="cursor-pointer"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+      <!-- Validation -->
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <div
+          class="flex p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200"
+          role="alert"
+        >
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if (loginForm.get('password')?.hasError('required')) {
+              <li>Password is required.</li>
+            }
+
+            <li>
+              Password must be at least 8 characters long and include at least one uppercase letter,
+              one lowercase letter, one number, and one special character.
+            </li>
+          </ul>
+        </div>
+      }
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full rounded-xl py-3 text-base font-extrabold text-white transition disabled:opacity-60 bg-[#00298d] hover:bg-[#001f6b]"
+      >
+        login
+        @if (loading()) {
+          <i class="fa-solid fa-spinner fa-spin"></i>
+        }
+      </button>
+    </form>
+  </div>
+</div>
