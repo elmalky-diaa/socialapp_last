@@ -1,6 +1,7 @@
 export interface Icomments {
   _id: string;
   content: string;
+  image: string;
   commentCreator: CommentCreator;
   post: string;
   parentComment: null;

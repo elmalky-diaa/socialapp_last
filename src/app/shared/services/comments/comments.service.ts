@@ -15,4 +15,7 @@ export class CommentsService {
   createComments(postId: any, body: any): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/posts/${postId}/comments`, body);
   }
+  deleteComments(postId: any, commentId: any): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/posts/${postId}/comments/${commentId}`);
+  }
 }
