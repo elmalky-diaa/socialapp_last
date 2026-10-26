@@ -36,4 +36,7 @@ export class AuthService {
   getUserPosts(userId: string): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/users/${userId}/posts`);
   }
+  GetFollowSuggestions(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/users/suggestions?limit=10`);
+  }
 }
