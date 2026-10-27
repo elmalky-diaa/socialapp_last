@@ -39,4 +39,7 @@ export class AuthService {
   GetFollowSuggestions(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/users/suggestions?limit=10`);
   }
+  getBookmarks(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/users/bookmarks`);
+  }
 }

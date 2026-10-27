@@ -8,6 +8,7 @@ import { NotFoundComponent } from './features/not-found/not-found.component';
 import { alreadyloggedGuard } from './core/guards/alreadylogged-guard';
 import { MyPostComponent } from './features/feeds/components/my-post/my-post.component';
 import { CenterSideComponent } from './features/feeds/components/center-side/center-side.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -32,6 +33,7 @@ export const routes: Routes = [
           import('./features/profile/profile.component').then((c) => c.ProfileComponent),
         title: 'Profile',
       },
+      { path: 'changepass', component: ChangePasswordComponent, title: 'Change Password' },
       {
         path: 'feeds',
         loadComponent: () =>
@@ -47,6 +49,15 @@ export const routes: Routes = [
               ),
           },
           { path: 'mypost', component: MyPostComponent, title: 'MyPost' },
+          {
+            path: 'saved',
+            loadComponent: () =>
+              import('./features/feeds/components/saved/saved.component').then(
+                (c) => c.SavedComponent,
+              ),
+            title: 'Saved',
+          },
+          { path: '**', component: NotFoundComponent },
         ],
       },
       {

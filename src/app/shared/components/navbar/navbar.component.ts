@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   private readonly authService = inject(AuthService);
 
   ngOnInit(): void {
-    initFlowbite;
+    initFlowbite();
   }
   navbarLogut() {
     this.authService.logout();
