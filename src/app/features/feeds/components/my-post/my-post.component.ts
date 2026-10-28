@@ -6,6 +6,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommentsComponent } from '../comments/comments.component';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-post',
@@ -15,6 +16,8 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
 })
 export class MyPostComponent implements OnInit {
   private readonly postsService = inject(PostsService);
+  private readonly toastr = inject(ToastrService);
+
   private readonly authService = inject(AuthService);
   imgFile!: File;
   imgUrl = signal<string | ArrayBuffer | null | undefined>('');
@@ -28,6 +31,8 @@ export class MyPostComponent implements OnInit {
   openMenuId: string | null = null;
   loggedUser: WritableSignal<User> = signal({} as User);
   userId = signal('');
+  isEditMode = signal<boolean>(false);
+  editPostId = signal<string | null>(null);
 
   ngOnInit(): void {
     this.getProfile();
@@ -158,5 +163,51 @@ export class MyPostComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  // Edit Post
+  editPost(postId: string, postBody: string, postPrivacy: string, postImage?: string) {
+    this.isEditMode.set(true);
+    this.editPostId.set(postId);
+    this.postBody.setValue(postBody);
+    this.postPrivacy.setValue(postPrivacy);
+    if (postImage) {
+      this.imgUrl.set(postImage);
+    }
+    this.openMenuId = null;
+    this.isHidden = false;
+  }
+
+  updatePost(e: SubmitEvent, form: HTMLFormElement) {
+    e.preventDefault();
+    if (this.editPostId()) {
+      let formData = new FormData();
+      if (this.postBody.value) {
+        formData.append('body', this.postBody.value);
+      }
+      if (this.imgFile) {
+        formData.append('image', this.imgFile);
+      }
+
+      if (this.postPrivacy.value) {
+        formData.append('privacy', this.postPrivacy.value);
+      }
+      this.postsService.updateSinglPost(this.editPostId()!, formData).subscribe({
+        next: (res) => {
+          console.log(res);
+          form.reset();
+          this.imgUrl.set('null');
+
+          this.toastr.success('Post Updated');
+          this.isEditMode.set(false);
+          this.editPostId.set(null);
+          this.getAllPosts();
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastr.error(err.error.message);
+        },
+      });
+    }
   }
 }
