@@ -6,3 +6,11 @@
 @import "flowbite/src/themes/default";
 @source "../node_modules/flowbite/dist/flowbite.min.css";
 @import 'ngx-toastr/toastr';
+
+.authActiveLink {
+    @apply rounded-lg py-2 text-sm font-extrabold transition bg-white text-[#00298d] shadow-sm cursor-pointer
+}
+
+.authLink {
+    @apply rounded-lg py-2 text-sm font-extrabold transition text-slate-600 hover:text-slate-800 cursor-pointer
+}

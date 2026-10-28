@@ -232,7 +232,7 @@
         </div>
         <div class="flex items-center gap-3">
           <button
-            class="flex items-center gap-2 rounded-lg bg-[#1877f2] px-5 py-2 text-sm font-extrabold text-white shadow-sm transition-colors hover:bg-[#166fe5] disabled:opacity-60"
+            class="cursor-pointer flex items-center gap-2 rounded-lg bg-[#1877f2] px-5 py-2 text-sm font-extrabold text-white shadow-sm transition-colors hover:bg-[#166fe5] disabled:opacity-60"
           >
             Post<svg
               xmlns="http://www.w3.org/2000/svg"
@@ -319,7 +319,7 @@
             <div class="relative">
               <button
                 (click)="toggleMenu(post._id)"
-                class="rounded-full p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+                class="cursor-pointer rounded-full p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +346,7 @@
               >
                 <button
                   (click)="savePost(post._id)"
-                  class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  class="cursor-pointer flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -368,7 +368,7 @@
                 </button>
                 @if (loggedUser()._id === post.user._id) {
                   <button
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                    class="cursor-pointer flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -391,7 +391,7 @@
                   </button>
                   <button
                     (click)="deletePost(post._id)"
-                    class="flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-rose-600 hover:bg-rose-50"
+                    class="cursor-pointer flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-rose-600 hover:bg-rose-50"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

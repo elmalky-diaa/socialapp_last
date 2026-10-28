@@ -1,5 +1,5 @@
 <div
-  class="min-h-screen bg-[#f0f2f5] px-4 py-8 sm:py-12 lg:flex lg:items-center"
+  class="min-h-screen bg-[#f0f2f5] px-4 py-8 sm:py-12 lg:flex"
   style="font-family: Cairo, sans-serif"
 >
   <div
@@ -55,25 +55,26 @@
         </div>
       </div>
     </section>
-    <section class="order-1 w-full max-w-107.5 lg:order-2">
-      <div class="rounded-2xl bg-white p-4 sm:p-6 bg-amber-400">
+    <section class="order-1 w-full max-w-107.5 lg:order-2 flex flex-col justify-start">
+      <div class="rounded-2xl bg-white p-4 sm:p-6 flex flex-col justify-start">
         <div class="mb-5 grid grid-cols-2 rounded-xl bg-slate-100 p-1">
           <button
             routerLink="login"
+            routerLinkActive="authActiveLink"
             type="button"
-            class="rounded-lg py-2 text-sm font-extrabold transition bg-white text-[#00298d] shadow-sm"
+            class="authLink"
           >
             Login</button
           ><button
             routerLink="register"
+            routerLinkActive="authActiveLink"
             type="button"
-            class="rounded-lg py-2 text-sm font-extrabold transition text-slate-600 hover:text-slate-800"
+            class="authLink"
           >
             Register
           </button>
         </div>
-
-        <router-outlet></router-outlet>
+        <div class="bg-white"><router-outlet></router-outlet></div>
       </div>
     </section>
   </div>

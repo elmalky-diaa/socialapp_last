@@ -5,7 +5,7 @@ import { RouterOutlet, RouterLinkWithHref, RouterLink, RouterLinkActive } from '
   selector: 'app-authLayout',
   templateUrl: './authLayout.component.html',
   styleUrls: ['./authLayout.component.css'],
-  imports: [RouterOutlet, RouterLinkWithHref, RouterLink],
+  imports: [RouterOutlet, RouterLinkWithHref, RouterLink, RouterLinkActive],
 })
 export class AuthLayoutComponent implements OnInit {
   constructor() {}

@@ -100,16 +100,16 @@
         id="userMenuButton"
         data-dropdown-toggle="userDropdownMenu"
         data-dropdown-placement="bottom-end"
-        class="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-1.5 transition hover:bg-slate-100 focus:outline-none"
+        class="cursor-pointer flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-1.5 transition hover:bg-slate-100 focus:outline-none"
       >
         <img
-          alt="Diaa Elmalky"
+          [alt]="userPrifile().name"
           class="h-8 w-8 rounded-full object-cover"
-          src="Images/default-profile.png"
+          [src]="userPrifile().photo"
         />
-        <span class="hidden max-w-[140px] truncate text-sm font-semibold text-slate-800 md:block"
-          >Diaa Elmalky</span
-        >
+        <span class="hidden max-w-35 truncate text-sm font-semibold text-slate-800 md:block">{{
+          userPrifile().name
+        }}</span>
         <svg
           xmlns="http://w3.org"
           width="15"
