@@ -124,7 +124,10 @@
       >
     </button>
   </div>
-  <form #postForm (submit)="createPost($event, postForm)">
+  <form
+    #postForm
+    (submit)="isEditMode() ? updatePost($event, postForm) : createPost($event, postForm)"
+  >
     <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div class="mb-3 flex items-start gap-3">
         <img
@@ -368,6 +371,7 @@
                 </button>
                 @if (loggedUser()._id === post.user._id) {
                   <button
+                    (click)="editPost(post._id, post.body!, post.privacy, post.image)"
                     class="cursor-pointer flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
                   >
                     <svg

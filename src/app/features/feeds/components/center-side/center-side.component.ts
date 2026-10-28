@@ -39,6 +39,8 @@ export class CenterSideComponent implements OnInit {
   isHidden = true;
   openMenuId: string | null = null;
   loggedUser: WritableSignal<User> = signal({} as User);
+  isEditMode = signal<boolean>(false);
+  editPostId = signal<string | null>(null);
   ngOnInit(): void {
     this.getAllPosts();
     this.savedUserData();
@@ -122,7 +124,6 @@ export class CenterSideComponent implements OnInit {
         // console.log(err);
       },
     });
-    this.getAllPosts();
   }
 
   toggleDiv() {
@@ -162,5 +163,50 @@ export class CenterSideComponent implements OnInit {
         this.toastr.error(err.error.message);
       },
     });
+  }
+
+  // Edit Post
+  editPost(postId: string, postBody: string, postPrivacy: string, postImage?: string) {
+    this.isEditMode.set(true);
+    this.editPostId.set(postId);
+    this.postBody.setValue(postBody);
+    this.postPrivacy.setValue(postPrivacy);
+    if (postImage) {
+      this.imgUrl.set(postImage);
+    }
+    this.openMenuId = null;
+    this.isHidden = false;
+  }
+
+  updatePost(e: SubmitEvent, form: HTMLFormElement) {
+    e.preventDefault();
+    if (this.editPostId()) {
+      let formData = new FormData();
+      if (this.postBody.value) {
+        formData.append('body', this.postBody.value);
+      }
+      if (this.imgFile) {
+        formData.append('image', this.imgFile);
+      }
+
+      if (this.postPrivacy.value) {
+        formData.append('privacy', this.postPrivacy.value);
+      }
+      this.postsService.updateSinglPost(this.editPostId()!, formData).subscribe({
+        next: (res) => {
+          console.log(res);
+          form.reset();
+          this.imgUrl.set('null');
+          this.getAllPosts();
+          this.toastr.success('Post Updated');
+          this.isEditMode.set(false);
+          this.editPostId.set(null);
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastr.error(err.error.message);
+        },
+      });
+    }
   }
 }
