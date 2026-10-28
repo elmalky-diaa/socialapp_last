@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Iposts, User } from '../../core/models/iposts.interface';
 import { Iuser } from '../../core/models/iuser.interface';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,16 +12,39 @@ import { RouterLink } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   private readonly authService = inject(AuthService);
+  private readonly route = inject(ActivatedRoute);
   userPrifile: WritableSignal<Iuser> = signal({} as Iuser);
   userPosts: WritableSignal<Iposts[]> = signal([]);
   userId = signal('');
 
   ngOnInit(): void {
-    this.getProfile();
+    this.route.paramMap.subscribe((params) => {
+      const idFromUrl = params.get('id');
+
+      if (idFromUrl) {
+        this.getUserProfile(idFromUrl);
+      } else {
+        this.getProfile();
+      }
+    });
+    // this.getProfile();
   }
 
   getProfile() {
     this.authService.getMyProfile().subscribe({
+      next: (res) => {
+        console.log(res.data.user);
+        this.userPrifile.set(res.data.user);
+        this.userId.set(res.data.user._id);
+        this.getUserPosts();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  getUserProfile(id: string) {
+    this.authService.getUserProfile(id).subscribe({
       next: (res) => {
         console.log(res.data.user);
         this.userPrifile.set(res.data.user);

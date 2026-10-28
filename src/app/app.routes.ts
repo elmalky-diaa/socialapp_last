@@ -33,6 +33,12 @@ export const routes: Routes = [
           import('./features/profile/profile.component').then((c) => c.ProfileComponent),
         title: 'Profile',
       },
+      {
+        path: 'profile/:id',
+        loadComponent: () =>
+          import('./features/profile/profile.component').then((c) => c.ProfileComponent),
+        title: 'User Profile',
+      },
       { path: 'changepass', component: ChangePasswordComponent, title: 'Change Password' },
       {
         path: 'feeds',

@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { UsernamePipe } from '../../../../shared/pipes/username-pipe';
+import { UserProfile } from '../../../../shared/directives/user-profile';
 
 @Component({
   selector: 'app-center-side',
@@ -16,8 +17,8 @@ import { UsernamePipe } from '../../../../shared/pipes/username-pipe';
     ReactiveFormsModule,
     RouterLink,
     DatePipe,
-    TitleCasePipe,
     UsernamePipe,
+    UserProfile,
   ],
   templateUrl: './center-side.component.html',
   styleUrl: './center-side.component.css',

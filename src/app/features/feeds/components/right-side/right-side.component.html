@@ -44,13 +44,14 @@
           <path d="m21 21-4.34-4.34"></path>
           <circle cx="11" cy="11" r="8"></circle></svg
         ><input
+          [(ngModel)]="searchTerm"
           placeholder="Search friends..."
           class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-700 outline-none focus:border-[#1877f2] focus:bg-white"
           value=""
       /></label>
     </div>
     <div class="space-y-3">
-      @for (suggest of allSuggestions(); track suggest._id) {
+      @for (suggest of allSuggestions() | filterion: [searchTerm()]; track suggest._id) {
         <div class="rounded-xl border border-slate-200 p-2.5">
           <div class="flex items-center justify-between gap-2">
             <button

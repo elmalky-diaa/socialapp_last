@@ -33,6 +33,9 @@ export class AuthService {
   getMyProfile(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/users/profile-data`);
   }
+  getUserProfile(userId: string): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/users/${userId}/profile`);
+  }
   getUserPosts(userId: string): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/users/${userId}/posts`);
   }

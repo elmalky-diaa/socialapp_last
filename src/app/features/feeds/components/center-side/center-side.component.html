@@ -270,7 +270,7 @@
       <article class="overflow-visible rounded-xl border border-slate-200 bg-white shadow-sm">
         <div class="p-4">
           <div class="flex items-center gap-3">
-            <a class="shrink-0" href="#/profile/6ac50d6d0bbe45cf7a0466c2" data-discover="true"
+            <a class="shrink-0 cursor-pointer" data-discover="true"
               ><img
                 [alt]="post.user.name"
                 class="h-11 w-11 rounded-full object-cover"
@@ -279,8 +279,8 @@
             <div class="min-w-0 flex-1">
               <div class="flex flex-wrap items-center gap-1 text-sm">
                 <a
-                  class="font-extrabold text-foreground hover:underline"
-                  href="#/profile/6ac50d6d0bbe45cf7a0466c2"
+                  [appUserProfile]="post.user._id"
+                  class="font-extrabold cursor-pointer text-foreground hover:underline"
                   data-discover="true"
                   >{{ post.user.name }}</a
                 ><span class="font-medium text-slate-500">updated profile picture.</span>
